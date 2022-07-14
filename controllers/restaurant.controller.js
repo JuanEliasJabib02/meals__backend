@@ -54,3 +54,13 @@ const deleteReview = catchAsync(
         
     }
 ) 
+
+module.exports = {
+    newRestaurant, 
+    opensRestaurants, 
+    updateRestaurant,
+    closeRestaurant,
+    addReview,
+    updateReview,
+    deleteReview
+}

@@ -1,56 +1,47 @@
 const { catchAsync } = require("../utils/catchAsync.util");
 
 
-const newRestaurant = catchAsync(
+const newMeal = catchAsync(
     async (req,res,next) =>{
-        //Name , andress, rating
+        
 
     }
 ) 
 
-const opensRestaurants = catchAsync(
+const getMeals = catchAsync(
     async (req,res,next) =>{
-        // ONLY OPENS
+        // ONLY ACTIVES
     }
 ) 
 
-const updateRestaurant = catchAsync(  
+const getMealById = catchAsync(  
     async (req,res,next) =>{
-        //Only update name and address
+        //Only ACTIVES
         
     }
 ) 
 
-const closeRestaurant = catchAsync(
+const updateMeal = catchAsync(
     async (req,res,next) =>{
         //ONLY ADMIN CAN DO IT
+        //name, price
         
     }
 ) 
 
-
-const addReview = catchAsync(
+const deleteMeal = catchAsync(
     async (req,res,next) =>{
-        // make a new review
-            //restaurantid(send comment/rating ( req.body))
+        //ONLY ADMIN
         
     }
 ) 
 
-const updateReview = catchAsync(
-    async (req,res,next) =>{
 
-        // only the owner of the review can update that
-            // e
-        
-    }
-) 
+module.exports = {
+    newMeal,
+    getMeals, 
+    getMealById, 
+    updateMeal, 
+    deleteMeal
+}
 
-const deleteReview = catchAsync(
-    async (req,res,next) =>{
-
-        // only the owner of the review can update that
-            // e
-        
-    }
-) 
