@@ -1,0 +1,5 @@
+// Este archivo ignora la carpeta que especifiquemos
+// Como regla, lo primero que se tiene que ignorar siempre es un proyecto ess la carpeta node_modules
+
+node_modules
+config.env  
