@@ -5,6 +5,8 @@ const { db } = require('./utils/database.util');
 const app = express();
 app.use(express.json());
 
+const { AppError } = require('./utils/appError.util')
+
 
 //Controllers
 
@@ -18,6 +20,11 @@ const { usersRouter } = require('./routes/users.route')
 app.use('/api/v1/users', usersRouter );
 
 
+
+app.all('*',(req ,res ,next) => {
+    next(new AppError (`${req.method} ${req.url} not found in this server`, 404))
+     
+ })
 
 app.use(globalErrorHandler);
 

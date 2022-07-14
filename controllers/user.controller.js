@@ -1,6 +1,6 @@
 //Libraries
 const  bcrypt = require('bcryptjs'); // -- > Esta libreria funciona para encriptar la contraseña
-
+const jwt = require('jsonwebtoken')
 //Models
 
 const { User } = require('../models/users.model')
@@ -42,7 +42,7 @@ const login = catchAsync(
 
        // validar email
 
-       const correctEmail = await User.findOne({
+       const user = await User.findOne({
             where: {
                 email,
                 status:"active"
@@ -50,12 +50,32 @@ const login = catchAsync(
         
        })
 
-       if(!correctEmail){
+       if(!user){
             return next( new AppError('Email is wrong', 400));
        }
 
-       
+       const passOkay =  await bcrypt.compare(password, user.password)
 
+         console.log(passOkay)
+
+         if(!passOkay) {
+            return next( new AppError(' password fail', 400))
+         }
+
+         // Generate Token (Sirve como ticket de entrada)
+
+         const token = jwt.sign(
+            {id: user.id},
+            process.env.JWT_SIGN,
+            {
+                expiresIn:"1m"
+            }
+         )
+
+         res.status(200).json({
+            status:"succes",
+            token,
+         })
     }
 ) 
 
