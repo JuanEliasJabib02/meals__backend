@@ -19,8 +19,8 @@ const userExist = catchAsync(
         }
 
         req.user = user;
-        next()
-
+        next();
+        console.log("enviando user from user exist")
     }
 )
 

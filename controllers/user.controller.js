@@ -73,22 +73,26 @@ const login = catchAsync(
             status:"succes",
             token,
          })
+        
     }
 ) 
 
 const updateUser = catchAsync(  
     async (req,res,next) =>{
+        console.log("actualizado")
 
         const { user } = req
 
         const {name, email} = req.body;
     
-        await user.update({name, email })
+        const userEdited = await user.update({name, email })
+
+       /*  console.log(userEdited) */
     
         res.status(204).json(
         {
             status:"sucess",
-            user,
+            userEdited,
         })
       
 

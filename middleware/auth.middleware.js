@@ -40,7 +40,7 @@ const authentication = catchAsync(
          if(!userActive) {
              return next(new AppError("The owner of this token dont exist anymore", 403))
          }
-         req.sessionUser = userActive.id;
+         req.userActive = userActive;
          next(); 
     }
 )
@@ -49,15 +49,14 @@ const authentication = catchAsync(
 const protectUserAccount = catchAsync(
     async (req,res,next) => {
 
-         const { sessionUser } = req; // para obtener el usuario logeado
+         const { userActive, user } = req; // para obtener el usuario logeado
+         console.log(userActive.id)
+         console.log(user.id)
 
-         const { id } =req.params;
- 
-         if(sessionUser.id === id) {
-             return next( new AppError('Esta cuenta no es tuya'),403)
+         if(userActive.id !== user.id){
+            return next( new AppError ('Esta no es tu cuenta',403))
          }
-
-     next();
+        next();
     }
  )
 module.exports = { authentication, protectUserAccount}
