@@ -2,7 +2,8 @@ const express = require('express')
 
 //Controllers
 const { signUp, login, updateUser, deleteUser, getOrdersByUser, getOrderById } = require('../controllers/user.controller');
-const { authentication } = require('../middleware/auth.middleware');
+const { authentication, protectUserAccount } = require('../middleware/auth.middleware');
+const { userExist } = require('../middleware/users.middleware');
 
 
 // Router
@@ -21,11 +22,14 @@ usersRouter.post('/login',
 
 usersRouter.patch('/:id',
     authentication,
+    userExist,
+    protectUserAccount,
     updateUser
 )
 
 usersRouter.delete('/:id',
     authentication,
+    protectUserAccount,
     deleteUser
 )
 

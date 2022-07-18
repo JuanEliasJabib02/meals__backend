@@ -13,8 +13,7 @@ const { catchAsync } = require("../utils/catchAsync.util");
 //Functions
 const signUp = catchAsync(
     async (req,res,next) =>{
-        console.log("singup")
-        const { name, email, password } = req.body;
+        const { name, email, password, role } = req.body;
         //Encriptar pass
         const salt = await bcrypt.genSalt(12);
         const hashPassword = await bcrypt.hash(password, salt);
@@ -22,7 +21,8 @@ const signUp = catchAsync(
         const newUser = await User.create({
             name,
             email,
-            password: hashPassword
+            password: hashPassword,
+            role,
         })
 
         res.status(201).json({
@@ -30,8 +30,6 @@ const signUp = catchAsync(
             newUser
         })
 
-        console.log(newUser);
-         
     }
 ) 
 
@@ -56,7 +54,6 @@ const login = catchAsync(
 
        const passOkay =  await bcrypt.compare(password, user.password)
 
-         console.log(passOkay)
 
          if(!passOkay) {
             return next( new AppError(' password fail', 400))
@@ -68,7 +65,7 @@ const login = catchAsync(
             {id: user.id},
             process.env.JWT_SIGN,
             {
-                expiresIn:"1m"
+                expiresIn:"2d"
             }
          )
 
@@ -81,8 +78,20 @@ const login = catchAsync(
 
 const updateUser = catchAsync(  
     async (req,res,next) =>{
-        //Only update name and email
-        
+
+        const { user } = req
+
+        const {name, email} = req.body;
+    
+        await user.update({name, email })
+    
+        res.status(204).json(
+        {
+            status:"sucess",
+            user,
+        })
+      
+
     }
 ) 
 
