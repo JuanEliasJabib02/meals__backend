@@ -54,9 +54,22 @@ const protectUserAccount = catchAsync(
          console.log(user.id)
 
          if(userActive.id !== user.id){
-            return next( new AppError ('Esta no es tu cuenta',403))
+            return next( new AppError ('This account dont belong to you',403))
          }
         next();
     }
  )
-module.exports = { authentication, protectUserAccount}
+
+
+ const isAdmin = catchAsync(
+    async (req,res,next) => {
+        
+        const { userActive } = req;
+        
+        if (userActive.role !== "admin") {
+            return next( new AppError('The restaurant only can be update by the admin'),403)
+        } 
+        next();
+    }
+ )
+module.exports = { authentication, protectUserAccount, isAdmin}

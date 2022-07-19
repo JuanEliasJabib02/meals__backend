@@ -1,10 +1,10 @@
 const express = require('express');
 
 // Controllers
-const { newRestaurant, opensRestaurants, getRestaurantByid } = require("../controllers/restaurant.controller");
+const { newRestaurant, opensRestaurants, getRestaurantByid, updateRestaurant } = require("../controllers/restaurant.controller");
 
 //Middlewares
-const { authentication } = require('../middleware/auth.middleware');
+const { authentication, isAdmin } = require('../middleware/auth.middleware');
 const { restaurantExist } = require('../middleware/restaurants.middleware');
 const { restaurantValidator } = require('../middleware/validators.middleware.js');
 
@@ -29,6 +29,13 @@ restaurantsRouter.get('',
     getRestaurantByid
  )
 
+restaurantsRouter.patch('/:id',
+    authentication,
+    isAdmin,
+    restaurantExist,
+    restaurantValidator,
+    updateRestaurant
+)
 
 
 

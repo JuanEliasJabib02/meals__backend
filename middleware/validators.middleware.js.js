@@ -16,7 +16,7 @@ const checkResult = (req,res,next) => {
         return next(  new AppError(message, 500));
     }
 
-    next()
+    next();
     
     
 }

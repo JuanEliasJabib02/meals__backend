@@ -62,7 +62,20 @@ const getRestaurantByid = catchAsync(
 const updateRestaurant = catchAsync(  
     async (req,res,next) =>{
         //Only update name and address
-        
+
+        const { restaurant } = req;
+        const { name, address} = req.body;
+
+        await restaurant.update({
+            name,
+            address
+        })
+
+        res.status(204).json({
+            status:"succes",
+            restaurant
+        })
+
     }
 ) 
 
