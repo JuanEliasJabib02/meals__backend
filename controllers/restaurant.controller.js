@@ -28,8 +28,6 @@ const newRestaurant = catchAsync(
 
         })
 
-        console.log(newRestaurant)
-
     }
 ) 
 
@@ -81,7 +79,17 @@ const updateRestaurant = catchAsync(
 
 const closeRestaurant = catchAsync(
     async (req,res,next) =>{
-        //ONLY ADMIN CAN DO IT
+        //ONLY ADMIN CAN DO 
+
+        const { restaurant } = req;
+
+        await restaurant.update({
+            status:"closed"
+        })
+
+        res.status(204).json({
+            status:"sucess"
+        })
         
     }
 ) 
