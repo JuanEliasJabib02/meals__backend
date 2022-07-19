@@ -13,11 +13,16 @@ const { AppError } = require('./utils/appError.util')
 const {globalErrorHandler} = require('./controllers/error.global.controller');
 
 // Routers
-const { usersRouter } = require('./routes/users.route')
+const { usersRouter } = require('./routes/users.route');
+const { restaurantsRouter } = require('./routes/restaurants.route');
 
 // Endpoints
 
 app.use('/api/v1/users', usersRouter );
+
+app.use('/api/v1/restaurants', restaurantsRouter);
+
+
 
 
 

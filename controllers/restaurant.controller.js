@@ -1,9 +1,34 @@
-const { catchAsync } = require("../utils/catchAsync.util");
 
+//Models
+const { Restaurant } = require("../models/restaurants.model");
+
+
+//middlewares
+
+//Utils
+const { AppError } = require('../utils/appError.util')
+const { catchAsync } = require("../utils/catchAsync.util");
 
 const newRestaurant = catchAsync(
     async (req,res,next) =>{
         //Name , andress, rating
+      
+        const { name, address, rating } = req.body;
+
+        console.log(name, address, rating)
+
+        const newRestaurant =  await Restaurant.create({
+            name,
+            address,
+            rating
+        })
+
+        res.status(201).json({
+            status:"succes",
+
+        })
+
+        console.log(newRestaurant)
 
     }
 ) 
@@ -13,6 +38,8 @@ const opensRestaurants = catchAsync(
         // ONLY OPENS
     }
 ) 
+
+
 
 const updateRestaurant = catchAsync(  
     async (req,res,next) =>{

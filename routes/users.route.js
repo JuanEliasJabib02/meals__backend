@@ -4,6 +4,7 @@ const express = require('express')
 const { signUp, login, updateUser, deleteUser, getOrdersByUser, getOrderById } = require('../controllers/user.controller');
 const { authentication, protectUserAccount } = require('../middleware/auth.middleware');
 const { userExist } = require('../middleware/users.middleware');
+const { userValidator } = require('../middleware/validators.middleware.js');
 
 
 // Router
@@ -13,6 +14,7 @@ const usersRouter = express.Router();
 
 usersRouter.post('/signup', 
    /*  userValidator, */
+   userValidator,
     signUp
 )
 
@@ -29,6 +31,7 @@ usersRouter.patch('/:id',
 
 usersRouter.delete('/:id',
     authentication,
+    userExist,
     protectUserAccount,
     deleteUser
 )

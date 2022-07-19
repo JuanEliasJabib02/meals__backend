@@ -101,6 +101,13 @@ const updateUser = catchAsync(
 
 const deleteUser = catchAsync(
     async (req,res,next) =>{
+
+         /* Tecnica soft delete */
+       const { user } = req; // Viene desde el middleware
+        
+       await user.update ({status:'disabled'});
+   
+       res.status(204).json({status:'sucess'});
         
     }
 ) 
