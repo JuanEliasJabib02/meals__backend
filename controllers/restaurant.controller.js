@@ -36,6 +36,15 @@ const newRestaurant = catchAsync(
 const opensRestaurants = catchAsync(
     async (req,res,next) =>{
         // ONLY OPENS
+       
+        const restaurants = await Restaurant.findAll({
+            where: {status:"open"}
+        });
+
+        res.status(200).json({
+            status:"succes",
+            restaurants
+        })
     }
 ) 
 
