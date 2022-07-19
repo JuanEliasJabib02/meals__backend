@@ -48,7 +48,16 @@ const opensRestaurants = catchAsync(
     }
 ) 
 
-
+const getRestaurantByid = catchAsync(
+    async (req,res) => {
+       const { restaurant } = req;
+       
+       res.status(200).json({
+            status:"succes",
+            restaurant
+       })
+    }
+)
 
 const updateRestaurant = catchAsync(  
     async (req,res,next) =>{
@@ -93,7 +102,8 @@ const deleteReview = catchAsync(
 
 module.exports = {
     newRestaurant, 
-    opensRestaurants, 
+    opensRestaurants,
+    getRestaurantByid, 
     updateRestaurant,
     closeRestaurant,
     addReview,
