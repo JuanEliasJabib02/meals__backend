@@ -1,9 +1,28 @@
+//Models
+const { Meal } = require("../models/meals.model");
+const { Restaurant } = require("../models/restaurants.model");
+
 const { catchAsync } = require("../utils/catchAsync.util");
 
 
 const newMeal = catchAsync(
     async (req,res,next) =>{
-        
+       
+       const {name, price} = req.body;
+       const { id } = req.params;
+
+       const restaurant = await Restaurant.findOne({where:{id}})
+       
+       const newFood = await Meal.create({
+            name,
+            price,
+            restaurantId: restaurant.id
+       })
+
+       res.status(201).json({
+            status:"succes",
+            newFood
+       })
 
     }
 ) 

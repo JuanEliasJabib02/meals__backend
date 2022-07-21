@@ -54,7 +54,20 @@ const restaurantValidator = [
     checkResult,
 ]
 
+const mealValidator = [
+    body('name')
+        .notEmpty().isString().isLength({min:2})
+        .withMessage("Name can not be empty"),
+    body('price')
+        .notEmpty().isNumeric().isLength({min:1})
+        .withMessage("price can not be empty"),
+    checkResult,
+]
+
+    
 
 
 
-module.exports = {userValidator, restaurantValidator}
+
+
+module.exports = {userValidator, restaurantValidator,mealValidator}

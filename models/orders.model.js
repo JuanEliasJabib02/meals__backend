@@ -1,4 +1,4 @@
-const  {db, DataTypes} = require('../utils/database.util');
+const { db, DataTypes }= require('../utils/database.util');
 
 const Order = db.define('order',{
     id:{ 
@@ -29,8 +29,6 @@ const Order = db.define('order',{
         allowNull:false,
         defaultValue:"active"
     }
-    
 })
 
-
-module.exports = { Order }
+module.exports = {Order}

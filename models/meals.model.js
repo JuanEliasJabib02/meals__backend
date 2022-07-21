@@ -1,7 +1,6 @@
-const { db , DataTypes } = require('../utils/database.util') // Importo la conexion de la base de datos para poder usarla
+const { db, DataTypes } = require('../utils/database.util');
 
-
-const Meal = db.define('meal', {
+const Meal = db.define('meal',{
     id:{ 
         primaryKey: true, 
         unique:true,
@@ -14,17 +13,19 @@ const Meal = db.define('meal', {
         allowNull:false
     },
     price:{
-        type: DataTypes.NUMBER
+        type: DataTypes.NUMBER,
+        allowNull:false
     },
     restaurantId:{
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull:false
     },
     status:{
-        type: DataTypes.STRING ,
-        allowNull: false,
-        defaultValue:"available"
-    }
+        type: DataTypes.STRING,
+        allowNull:false,
+        defaultValue:"avalaible"
+    },
+   
 })
 
 module.exports = { Meal }

@@ -2,6 +2,8 @@ const express = require('express')
 
 //Controllers
 const { signUp, login, updateUser, deleteUser, getOrdersByUser, getOrderById } = require('../controllers/user.controller');
+
+//Middlewares
 const { authentication, protectUserAccount } = require('../middleware/auth.middleware');
 const { userExist } = require('../middleware/users.middleware');
 const { userValidator } = require('../middleware/validators.middleware.js');

@@ -1,9 +1,11 @@
 const { app } = require("./app");
-const { Order } = require("./models/orders.model");
+
 
 //Models
 const { Restaurant } = require("./models/restaurants.model");
 const { Review } = require("./models/reviews.mode.js");
+const { Meal } = require("./models/meals.model");
+const { Order } = require("./models/orders.model");
 const { User } = require("./models/users.model");
 
 //Utils
@@ -24,7 +26,12 @@ db.authenticate()
     Order.belongsTo(User);
 
     Restaurant.hasMany(Review, {foreignKey:'restaurantId'})
-    Review.belongsTo(Restaurant)
+    Review.belongsTo(Restaurant);
+
+    Restaurant.hasMany(Meal, {foreignKey:'restaurantId'})
+    Meal.belongsTo(Restaurant)
+
+
 
 db.sync()
     .then(() => console.log("db sync"))

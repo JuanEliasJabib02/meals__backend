@@ -15,6 +15,7 @@ const {globalErrorHandler} = require('./controllers/error.global.controller');
 // Routers
 const { usersRouter } = require('./routes/users.route');
 const { restaurantsRouter } = require('./routes/restaurants.route');
+const { mealsRouter } = require('./routes/meals.route');
 
 // Endpoints
 
@@ -22,7 +23,7 @@ app.use('/api/v1/users', usersRouter );
 
 app.use('/api/v1/restaurants', restaurantsRouter);
 
-
+app.use('/api/v1/meals', mealsRouter)
 
 
 
