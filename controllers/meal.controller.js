@@ -29,7 +29,18 @@ const newMeal = catchAsync(
 
 const getMeals = catchAsync(
     async (req,res,next) =>{
-        // ONLY ACTIVES
+        
+        const meals = await Meal.findAll({
+            where: {status:"avalaible"},
+            include:[{
+                model:Restaurant,
+            }]
+        })
+
+        res.status(200).json({
+            status:"succes",
+            meals,
+        })
     }
 ) 
 
