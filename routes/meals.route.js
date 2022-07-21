@@ -2,7 +2,7 @@ const express = require('express')
 
 //controllers
 const { newMeal, getMeals, getMealById, updateMeal, deleteMeal } = require('../controllers/meal.controller');
-const { authentication } = require('../middleware/auth.middleware');
+const { authentication, isAdmin } = require('../middleware/auth.middleware');
 const { mealValidator } = require('../middleware/validators.middleware.js');
 
 //middlewares
@@ -29,10 +29,14 @@ mealsRouter.get('/:id',
 )
 
 mealsRouter.patch('/:id',
+    authentication,
+    isAdmin,
     updateMeal
 )
 
 mealsRouter.delete('/:id',
+    authentication,
+    isAdmin,
     deleteMeal
 )
 

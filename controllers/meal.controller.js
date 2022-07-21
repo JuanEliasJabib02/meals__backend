@@ -74,6 +74,18 @@ const updateMeal = catchAsync(
     async (req,res,next) =>{
         //ONLY ADMIN CAN DO IT
         //name, price
+        const { id } = req.params;
+        const { name, price} = req.body;
+        const meal = await Meal.findOne({where:{id}})
+
+       meal.update({
+            name,
+            price,
+       })
+
+       res.status(200).json({
+        status:"succes"
+       })
         
     }
 ) 
@@ -81,6 +93,18 @@ const updateMeal = catchAsync(
 const deleteMeal = catchAsync(
     async (req,res,next) =>{
         //ONLY ADMIN
+
+        const { id } = req.params;
+        const meal = await Meal.findOne({where:{id}})
+
+       meal.update({
+            status:"not avalaible"
+       })
+
+       res.status(200).json({
+        status:"succes"
+       })
+        
         
     }
 ) 
