@@ -20,7 +20,6 @@ const userExist = catchAsync(
 
         req.user = user;
         next();
-        console.log("enviando user from user exist")
     }
 )
 
