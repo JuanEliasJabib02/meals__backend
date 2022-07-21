@@ -23,7 +23,6 @@ const newMeal = catchAsync(
             status:"succes",
             newFood
        })
-
     }
 ) 
 
@@ -47,6 +46,26 @@ const getMeals = catchAsync(
 const getMealById = catchAsync(  
     async (req,res,next) =>{
         //Only ACTIVES
+
+        const { id } = req.params;
+
+       const meal = await Meal.findOne(
+        {
+            where:{id}, where:{status:"avalaible"},
+            include:[
+                {
+                    model:Restaurant,
+                    attributes:["name","address","rating","status"]
+                }
+            ]
+        })
+
+       res.status(200).json({
+            status:"succes",
+            meal
+       })
+
+
         
     }
 ) 
