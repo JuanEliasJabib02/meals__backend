@@ -22,4 +22,17 @@ const reviewExist = catchAsync(
     }
 )
 
-module.exports = { reviewExist }
+const reviewOwner = catchAsync(
+    async (req,res,next) =>{    // Esta sirve para saber quien es el dueño del review
+        
+        const { userActive } = req;
+        const { review } =req;
+        
+        if(review.userId !== userActive.id){
+            return next( new AppError('This review belong to other user', 403))
+        }
+       
+        next();
+    }
+)
+module.exports = { reviewExist, reviewOwner}

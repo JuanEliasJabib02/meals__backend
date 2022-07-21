@@ -41,7 +41,7 @@ const opensRestaurants = catchAsync(
             where: {status:"open"},
             include:[{
                 model:Review,
-                attributes:["comment","rating", "status"]
+                attributes:["comment","rating", "status","userId"]
             }]
            
         });
@@ -132,6 +132,7 @@ const updateReview = catchAsync(
         
         const {review} = req;
         const {comment , rating }= req.body;
+        
 
         const reviewEdited = await review.update({
             comment,
