@@ -23,7 +23,7 @@ const Meal = db.define('meal', {
     status:{
         type: DataTypes.STRING ,
         allowNull: false,
-        defaultValue:"disponible"
+        defaultValue:"available"
     }
 })
 

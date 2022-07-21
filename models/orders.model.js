@@ -1,7 +1,6 @@
-const { db , DataTypes } = require('../utils/database.util') // Importo la conexion de la base de datos para poder usarla
+const { db, DataTypes } = require('../utils/database.util');
 
-
-const Order = db.define('order', {
+const Order = db.define('order',{
     id:{ 
         primaryKey: true, 
         unique:true,
@@ -17,19 +16,22 @@ const Order = db.define('order', {
         type: DataTypes.INTEGER,
         allowNull:false,
     },
-    totalPrice:{ // Este valor funcionara como una foreight key
+    totalPrice:{
         type: DataTypes.NUMBER,
-        allowNull:false,
+        allowNull:false
     },
-    quantity:{ // Este valor funcionara como una foreight key
+    quantity:{
         type: DataTypes.INTEGER,
-        allowNull:false,
+        allowNull:false
+
     },
     status:{
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: 'active' 
-    },
+        defaultValue:"active"
+
+    }
 })
+
 
 module.exports = { Order }

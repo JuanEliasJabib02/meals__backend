@@ -25,6 +25,7 @@ const newRestaurant = catchAsync(
 
         res.status(201).json({
             status:"succes",
+            newRestaurant
 
         })
 

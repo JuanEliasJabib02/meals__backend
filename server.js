@@ -7,15 +7,13 @@ const { Review } = require("./models/reviews.mode.js");
 const { User } = require("./models/users.model");
 
 //Utils
-const { db } = require("./utils/database.util")
+const {db} = require('./utils/database.util')
 
 
 
 db.authenticate()
     .then(() => console.log("db authenticated"))
     .catch(err => console.log(err));
-
-
     // Relaciones
     User.hasMany(Review, {foreignKey:'userId'})
     Review.belongsTo(User);
@@ -26,19 +24,9 @@ db.authenticate()
     Restaurant.hasMany(Review, {foreignKey:'restaurantId'})
     Review.belongsTo(Restaurant)
 
-
-
-
-
-
-
-
-
-
-
 db.sync()
     .then(() => console.log("db sync"))
-    .catch(err => console.log(err))
+    .catch((err) => console.log(err));
 
 
 app.listen(4000, () => {
