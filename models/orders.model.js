@@ -1,4 +1,4 @@
-const { db, DataTypes } = require('../utils/database.util');
+const  {db, DataTypes} = require('../utils/database.util');
 
 const Order = db.define('order',{
     id:{ 
@@ -8,11 +8,11 @@ const Order = db.define('order',{
         autoIncrement:true, 
         allowNull:false
     },
-    mealId:{ // Este valor funcionara como una foreight key
+    userId:{ // Este valor funcionara como una foreight key
         type: DataTypes.INTEGER,
         allowNull:false,
     },
-    userId:{ // Este valor funcionara como una foreight key
+    mealId:{
         type: DataTypes.INTEGER,
         allowNull:false,
     },
@@ -23,14 +23,13 @@ const Order = db.define('order',{
     quantity:{
         type: DataTypes.INTEGER,
         allowNull:false
-
     },
     status:{
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull:false,
         defaultValue:"active"
-
     }
+    
 })
 
 

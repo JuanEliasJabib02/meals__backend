@@ -14,6 +14,8 @@ const {db} = require('./utils/database.util')
 db.authenticate()
     .then(() => console.log("db authenticated"))
     .catch(err => console.log(err));
+    
+    
     // Relaciones
     User.hasMany(Review, {foreignKey:'userId'})
     Review.belongsTo(User);

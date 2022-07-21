@@ -150,7 +150,13 @@ const deleteReview = catchAsync(
     async (req,res,next) =>{
 
         // only the owner of the review can update that
-            // e
+           
+         /* Tecnica soft delete */
+       const { review } = req; // Viene desde el middleware
+        
+       await review.update ({status:'disabled'});
+   
+       res.status(204).json({status:'sucess'});
         
     }
 ) 

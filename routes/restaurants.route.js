@@ -1,7 +1,7 @@
 const express = require('express');
 
 // Controllers
-const { newRestaurant, opensRestaurants, getRestaurantByid, updateRestaurant, closeRestaurant, addReview, updateReview } = require("../controllers/restaurant.controller");
+const { newRestaurant, opensRestaurants, getRestaurantByid, updateRestaurant, closeRestaurant, addReview, updateReview, deleteReview } = require("../controllers/restaurant.controller");
 
 //Middlewares
 const { authentication, isAdmin, protectUserAccount } = require('../middleware/auth.middleware');
@@ -53,8 +53,14 @@ restaurantsRouter.post('/reviews/:restaurantId',
 
 
 restaurantsRouter.patch('/reviews/:id',
+  authentication,
   reviewExist,
   updateReview
 )
 
+restaurantsRouter.delete('/reviews/:id',
+  authentication,
+  reviewExist,
+  deleteReview
+)
 module.exports = { restaurantsRouter }
