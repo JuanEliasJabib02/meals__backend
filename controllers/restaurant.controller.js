@@ -41,7 +41,7 @@ const opensRestaurants = catchAsync(
             where: {status:"open"},
             include:[{
                 model:Review,
-                attributes:["comment","rating"]
+                attributes:["comment","rating", "status"]
             }]
            
         });
