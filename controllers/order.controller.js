@@ -1,5 +1,7 @@
 const { Meal } = require("../models/meals.model");
 const { Order } = require("../models/orders.model");
+const { Restaurant } = require("../models/restaurants.model");
+const { User } = require("../models/users.model");
 const { AppError } = require("../utils/appError.util");
 const { catchAsync } = require("../utils/catchAsync.util");
 
@@ -44,7 +46,38 @@ const newOrder = catchAsync(
 const getOrders = catchAsync(
     async (req,res,next) =>{
         
-       console.log("orders")
+       const orders = await Order.findAll({
+        
+            where: {
+                status:"active"
+            },
+            attributes:[
+                "id",
+                "userId",
+                "quantity"
+            ],
+
+            include:[{
+                model:User, // AVERIGUAR COMO MOSTRAR
+            }],
+            include:[{
+                model:Meal,
+                attributes:["name","price","status"],
+                include:[{
+                    model:Restaurant,
+                    attributes:["name","address",]
+                    
+                }],
+                
+            }]
+            
+           
+       });
+
+       res.status(200).json({
+            status:"succes",
+            orders
+       })
     }
 ) 
 

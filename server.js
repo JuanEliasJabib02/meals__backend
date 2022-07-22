@@ -9,7 +9,8 @@ const { Order } = require("./models/orders.model");
 const { User } = require("./models/users.model");
 
 //Utils
-const {db} = require('./utils/database.util')
+const {db} = require('./utils/database.util');
+const { orderCancelled } = require("./controllers/order.controller");
 
 
 
@@ -30,6 +31,7 @@ db.authenticate()
 
     Restaurant.hasMany(Meal, {foreignKey:'restaurantId'})
     Meal.belongsTo(Restaurant)
+
 
     Meal.hasOne(Order, {foreignKey:'mealId'})
     Order.belongsTo(Meal)
