@@ -5,6 +5,7 @@ const express = require('express');
 const { newOrder, getOrders, orderComplete, orderCancelled } = require('../controllers/order.controller');
 //MIDDLEWARES
 const { authentication } = require('../middleware/auth.middleware');
+const { orderExist } = require('../middleware/orders.middlewares');
 
 //ROUTER
 const ordersRouter = express.Router();
@@ -23,14 +24,16 @@ ordersRouter.get('/me',
     
 )
 
-ordersRouter.patch('/',
+ordersRouter.patch('/:id',
     authentication,
+    orderExist,
     orderComplete,
     
 )
 
-ordersRouter.delete('/',
+ordersRouter.delete('/:id',
     authentication,
+    orderExist,
     orderCancelled
     
 )

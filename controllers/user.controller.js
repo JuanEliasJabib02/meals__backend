@@ -116,6 +116,9 @@ const deleteUser = catchAsync(
 const getOrdersByUser = catchAsync(
     async (req,res,next) =>{
         
+        const {user} = req;
+        console.log("orden del usuario")
+        
     }
 ) 
 

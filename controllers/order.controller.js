@@ -1,3 +1,4 @@
+const e = require("express");
 const { Meal } = require("../models/meals.model");
 const { Order } = require("../models/orders.model");
 const { Restaurant } = require("../models/restaurants.model");
@@ -83,13 +84,32 @@ const getOrders = catchAsync(
 
 const orderComplete = catchAsync(  
     async (req,res,next) =>{
-        //Only update name and email
-        
+
+        const { order } =req;
+
+        const complete = await order.update({
+            status:"complete"
+        })
+
+        res.status(200).json({
+            status:"succes",
+        })
     }
 ) 
 
 const orderCancelled = catchAsync(
     async (req,res,next) =>{
+
+        
+        const { order } =req;
+
+        const deleted = await order.update({
+            status:"delete"
+        })
+
+        res.status(200).json({
+            status:"succes",
+        })
         
     }
 ) 
