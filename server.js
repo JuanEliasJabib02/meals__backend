@@ -31,6 +31,9 @@ db.authenticate()
     Restaurant.hasMany(Meal, {foreignKey:'restaurantId'})
     Meal.belongsTo(Restaurant)
 
+    Meal.hasOne(Order, {foreignKey:'mealId'})
+    Order.belongsTo(Meal)
+
 
 
 db.sync()

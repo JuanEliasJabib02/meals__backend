@@ -16,6 +16,7 @@ const {globalErrorHandler} = require('./controllers/error.global.controller');
 const { usersRouter } = require('./routes/users.route');
 const { restaurantsRouter } = require('./routes/restaurants.route');
 const { mealsRouter } = require('./routes/meals.route');
+const { ordersRouter } = require('./routes/orders.route');
 
 // Endpoints
 
@@ -25,7 +26,7 @@ app.use('/api/v1/restaurants', restaurantsRouter);
 
 app.use('/api/v1/meals', mealsRouter)
 
-
+app.use('/api/v1/orders', ordersRouter)
 
 app.all('*',(req ,res ,next) => {
     next(new AppError (`${req.method} ${req.url} not found in this server`, 404))
