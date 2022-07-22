@@ -40,7 +40,10 @@ const authentication = catchAsync(
          if(!userActive) {
              return next(new AppError("The owner of this token dont exist anymore", 403))
          }
+
          req.userActive = userActive;
+         req.tokenId = decoded.id
+         
          next(); 
     }
 )

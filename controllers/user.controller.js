@@ -2,9 +2,10 @@
 const  bcrypt = require('bcryptjs'); // -- > Esta libreria funciona para encriptar la contraseña
 const jwt = require('jsonwebtoken')
 //Models
-
+const  { Meal } = require('../models/meals.model')
 const { User } = require('../models/users.model')
-
+const  { Order } = require('../models/orders.model')
+const  { Restaurant } = require('../models/restaurants.model')
 //Utils
 const { AppError } = require('../utils/appError.util')
 const { catchAsync } = require("../utils/catchAsync.util");
@@ -116,8 +117,38 @@ const deleteUser = catchAsync(
 const getOrdersByUser = catchAsync(
     async (req,res,next) =>{
         
-        const {user} = req;
-        console.log("orden del usuario")
+        const { tokenId } = req;
+
+        const userOrders = await User.findOne({
+             where: { id : tokenId},
+             where: { status:"active"},
+             attributes:["name","role"],
+
+             include:[{
+                model:Order,
+                status:"active",
+                attributes:["id","totalPrice","quantity",],
+              
+                include:[{
+                    model:Meal,
+                    attributes:["name","price"],
+                    
+                    include:[{
+                        model:Restaurant,
+                        attributes:["name"]
+                    }]
+                }] 
+             }]
+        })
+     
+         if(!userOrders) {
+             return next(new AppError("This user dont have orders", 403))
+         }
+        
+       res.status(200).json({
+            sucess:"status",
+            userOrders
+       })
         
     }
 ) 
