@@ -6,6 +6,9 @@ const  { Meal } = require('../models/meals.model')
 const { User } = require('../models/users.model')
 const  { Order } = require('../models/orders.model')
 const  { Restaurant } = require('../models/restaurants.model')
+
+//Middlewares
+
 //Utils
 const { AppError } = require('../utils/appError.util')
 const { catchAsync } = require("../utils/catchAsync.util");
@@ -119,6 +122,8 @@ const getOrdersByUser = catchAsync(
         
         const { tokenId } = req;
 
+      
+
         const userOrders = await User.findOne({
              where: { id : tokenId},
              where: { status:"active"},
@@ -155,6 +160,41 @@ const getOrdersByUser = catchAsync(
 
 const getOrderById = catchAsync(
     async (req,res,next) =>{
+        //Id del usuario activo
+        const { tokenId } = req;
+        //Id de la orden
+        const { id } = req.params;
+
+        const userOrderByid = await User.findOne({
+             where: { id : tokenId},
+             where: { status:"active"},
+             attributes:["name","role"],
+
+             include:[{
+                model: Order,
+                where:{id},
+
+                include:[{
+                    model:Meal,
+                    attributes:["name","price"],
+                    
+                    include:[{
+                        model:Restaurant,
+                        attributes:["name"]
+                    }]
+                }]
+               
+             }]
+        })
+
+
+        res.status(200).json({
+            status:"succes",
+            userOrderByid
+        })
+
+       
+
         
     }
 ) 
