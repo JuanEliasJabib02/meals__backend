@@ -14,6 +14,8 @@ const { AppError } = require('../utils/appError.util')
 const { catchAsync } = require("../utils/catchAsync.util");
 
 
+
+
 //Functions
 const signUp = catchAsync(
     async (req,res,next) =>{

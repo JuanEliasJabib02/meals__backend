@@ -1,5 +1,11 @@
 const express = require('express');
-const { db } = require('./utils/database.util');
+
+//Swagger
+
+const swaggerUI = require("swagger-ui-express");
+const swaggerJsDoc = require("swagger-jsdoc");
+const {swaggerSpec} = require("./utils/swagger.util")
+
 
 // Init express
 const app = express();
@@ -18,6 +24,8 @@ const { restaurantsRouter } = require('./routes/restaurants.route');
 const { mealsRouter } = require('./routes/meals.route');
 const { ordersRouter } = require('./routes/orders.route');
 
+
+
 // Endpoints
 
 app.use('/api/v1/users', usersRouter );
@@ -27,6 +35,8 @@ app.use('/api/v1/restaurants', restaurantsRouter);
 app.use('/api/v1/meals', mealsRouter)
 
 app.use('/api/v1/orders', ordersRouter)
+
+app.use("/api-doc", swaggerUI.serve, swaggerUI.setup(swaggerJsDoc(swaggerSpec)))
 
 app.all('*',(req ,res ,next) => {
     next(new AppError (`${req.method} ${req.url} not found in this server`, 404))
