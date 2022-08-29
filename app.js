@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 
 //Swagger
 
@@ -9,7 +10,8 @@ const {swaggerSpec} = require("./utils/swagger.util")
 
 // Init express
 const app = express();
-app.use(express.json());
+app.use(express.json())
+app.use(cors());
 
 const { AppError } = require('./utils/appError.util')
 

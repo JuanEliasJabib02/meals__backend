@@ -20,7 +20,6 @@ const usersRouter = express.Router();
 
 
 usersRouter.post('/signup', 
-   /*  userValidator, */
    userValidator,
     signUp
 )
@@ -55,7 +54,7 @@ usersRouter.post('/signup',
 
 /**
  * @swagger
- * /api/users:
+ * /api/v1/users/signup:
  *  post:
  *    summary: New user
  *    tags: [users]
@@ -75,6 +74,8 @@ usersRouter.post('/signup',
 usersRouter.post('/login',
     login
 )
+
+
 
 
 
