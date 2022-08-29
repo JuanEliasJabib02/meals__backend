@@ -2,13 +2,26 @@
 const path = require("path")
 
 const swaggerSpec = {
-
     definition : {
         openapi: "3.0.0",
         info:{
-            title:"Node PostgreSQL API Meals",
+            title:"Rest API meals Doc",
             version:"1.0.0"
         },
+        components:{
+          securitySchemas:{
+            bearerAuth:{
+                  type:"http",
+                  scheme:"bearer",
+                  bearerFormat:"JWT"
+            }
+          }
+        },
+        security: [
+          {
+            bearerAuth: [],
+          }
+        ],
         servers:[
           {
             url:"http://localhost:4000"

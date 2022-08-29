@@ -31,6 +31,8 @@ const signUp = catchAsync(
             role,
         })
 
+        newUser.password = undefined;
+
         res.status(201).json({
             status:"succes",
             newUser

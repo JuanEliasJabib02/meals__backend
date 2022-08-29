@@ -67,13 +67,48 @@ usersRouter.post('/signup',
  *            $ref: "#/components/schemas/users"
  *    responses:
  *      200:
- *        description: new user created
+ *        description: Success
+ *        content:
+ *          application/json:
+ *            schema:
+ *              example:
+ *                  status: "active"
+ *                  id: 1
+ *                  name: juan elias 
+ *                  email: juaneliasjabib02@gmail.com
+ *                  role: client
+ *                  updatedAt: 2022-08-29T19:20:58.949Z
+ *                  createdAt: 2022-08-29T19:20:58.949Z
+ *                  
+ *                       
+ *      409:
+ *        description: Conflict
+ *      400:
+ *        description: Bad request
  */
 
 
 usersRouter.post('/login',
     login
 )
+
+/**
+ * @swagger
+ * /api/v1/users/login:
+ *  post:
+ *    summary: login
+ *    tags: [users]
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            $ref: "#/components/schemas/users"
+ *    responses:
+ *      200:
+ *        description: login sucessfull
+ */
 
 
 
