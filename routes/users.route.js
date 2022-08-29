@@ -49,7 +49,20 @@ usersRouter.post('/signup',
  *        email: juaneliasjabib02@gmail.com
  *        password: easypass1234
  *        role: admin
-
+ * 
+ *    login:
+ *      type: object
+ *      properties:
+ *        email:
+ *          type: string
+ *        password:
+ *          type: string
+ *      required:
+ *        email
+ *        password
+ *      example:
+ *        email: juaneliasjabib02@gmail.com
+ *        password: easypass1234
  */
 
 /**
@@ -79,7 +92,6 @@ usersRouter.post('/signup',
  *                  role: client
  *                  updatedAt: 2022-08-29T19:20:58.949Z
  *                  createdAt: 2022-08-29T19:20:58.949Z
- *                  
  *                       
  *      409:
  *        description: Conflict
@@ -104,12 +116,22 @@ usersRouter.post('/login',
  *        application/json:
  *          schema:
  *            type: object
- *            $ref: "#/components/schemas/users"
+ *            $ref: "#/components/schemas/login"
  *    responses:
  *      200:
- *        description: login sucessfull
+ *        description: Success
+ *        content:
+ *          application/json:
+ *            schema:
+ *              example:
+ *                  status: succes
+ *                  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjEsImlhdCI6MTY2MTgwNDEzMCwiZXhwIjoxNjYxOTc2OTMwfQ.U3rbgGuZ9Xd6CA9Cwug_PFBnJl2dCJn_emwXLyMV8Ho
+ *                       
+ *      409:
+ *        description: Conflict
+ *      400:
+ *        description: Bad request
  */
-
 
 
 
