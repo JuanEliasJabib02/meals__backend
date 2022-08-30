@@ -4,10 +4,10 @@ const express = require('express');
 const { newRestaurant, opensRestaurants, getRestaurantByid, updateRestaurant, closeRestaurant, addReview, updateReview, deleteReview } = require("../controllers/restaurant.controller");
 
 //Middlewares
-const { authentication, isAdmin, protectUserAccount } = require('../middleware/auth.middleware');
+const { authentication, isAdmin,  } = require('../middleware/auth.middleware');
 const { restaurantExist } = require('../middleware/restaurants.middleware');
 const { reviewExist, reviewOwner } = require('../middleware/reviews.middleware');
-const { userExist } = require('../middleware/users.middleware');
+
 const { restaurantValidator } = require('../middleware/validators.middleware.js');
 
 // Router

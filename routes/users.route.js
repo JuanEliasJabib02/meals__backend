@@ -24,46 +24,7 @@ usersRouter.post('/signup',
     signUp
 )
 
-/**
- * @swagger
- * components:
- *  schemas:
- *    users:
- *      type: object
- *      properties:
- *        name:
- *          type: string
- *        email:
- *          type: string
- *        password:
- *          type: string
- *        role:
- *          type: string
- *          required:
- *            name
- *            password
- *            email
- *            role
- *      example:
- *        name: juan elias
- *        email: juaneliasjabib02@gmail.com
- *        password: easypass1234
- *        role: admin
- * 
- *    login:
- *      type: object
- *      properties:
- *        email:
- *          type: string
- *        password:
- *          type: string
- *      required:
- *        email
- *        password
- *      example:
- *        email: juaneliasjabib02@gmail.com
- *        password: easypass1234
- */
+
 
 /**
  * @swagger
@@ -143,6 +104,12 @@ usersRouter.patch('/:id',
     updateUser
 )
 
+
+
+
+
+
+
 usersRouter.delete('/:id',
     authentication,
     userExist,
@@ -162,6 +129,47 @@ usersRouter.get('/orders/:id',
     getOrderById
 )
 
+
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *    users:
+ *      type: object
+ *      properties:
+ *        name:
+ *          type: string
+ *        email:
+ *          type: string
+ *        password:
+ *          type: string
+ *        role:
+ *          type: string
+ *          required:
+ *            name
+ *            password
+ *            email
+ *            role
+ *      example:
+ *        name: juan elias
+ *        email: juaneliasjabib02@gmail.com
+ *        password: easypass1234
+ *        role: admin
+ * 
+ *    login:
+ *      type: object
+ *      properties:
+ *        email:
+ *          type: string
+ *        password:
+ *          type: string
+ *      required:
+ *        email
+ *        password
+ *      example:
+ *        email: juaneliasjabib02@gmail.com
+ *        password: easypass1234
+ */
 
 
 

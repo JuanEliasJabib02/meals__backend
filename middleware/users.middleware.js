@@ -12,7 +12,11 @@ const userExist = catchAsync(
 
         const { id } = req.params;
 
+        console.log(id)
+
         const user = await User.findOne( { where: { id} })
+
+        console.log(user)
 
         if(!user){
             return next( new AppError('User not found', 404))
