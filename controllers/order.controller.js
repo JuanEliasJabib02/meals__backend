@@ -21,11 +21,7 @@ const newOrder = catchAsync(
         if(!meal){
             return next( new AppError('Meal not found', 404))
         }
-
-        console.log(meal)
         const mealPrice = meal.price * quantity;
-
-        console.log(meal.id)
 
         const order = await Order.create({
             mealId:meal.id,
@@ -121,3 +117,5 @@ module.exports = {
      orderComplete,
      orderCancelled
 }
+
+
