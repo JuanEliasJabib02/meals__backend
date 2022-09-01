@@ -105,10 +105,17 @@ module.exports = { restaurantsRouter }
 
 /**
  * @swagger
- * /api/v1/restaurants/:
+ * /api/v1/restaurants:
  *  get:
- *    summary: get restaurants
+ *    summary: get open restaurants
  *    tags: [restaurants]
+ *    responses:
+ *      204:
+ *        description: Success
+ *      409:
+ *        description: Conflict
+ *      400:
+ *        description: Bad request
  */
 
 /**
@@ -117,6 +124,19 @@ module.exports = { restaurantsRouter }
  *  get:
  *    summary: get restaurant by id
  *    tags: [restaurants]
+ *    parameters:
+ *        - in: path
+ *          name: id
+ *          required: true
+ *          schema:
+ *            type: integer
+ *    responses:
+ *      204:
+ *        description: Success
+ *      409:
+ *        description: Conflict
+ *      400:
+ *        description: Bad request
  */
 
 
