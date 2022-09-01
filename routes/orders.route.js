@@ -75,6 +75,71 @@ module.exports = {ordersRouter}
  *     - bearerAuth: []
  */
 
+/**
+ * @swagger
+ * /api/v1/orders/me:
+ *  get:
+ *    summary: get orders 
+ *    tags: [orders]
+ *    responses:
+ *      204:
+ *        description: Success
+ *      409:
+ *        description: Conflict
+ *      400:
+ *        description: Bad request
+ *    security:
+ *     - bearerAuth: []
+ */
+
+
+/**
+ * @swagger
+ * /api/v1/orders/{id}:
+ *  patch:
+ *    summary: orden complete
+ *    tags: [orders]
+ *    parameters:
+ *        - in: path
+ *          name: order Id
+ *          required: true
+ *          schema:
+ *            type: integer 
+ *    responses:
+ *      204:
+ *        description: Success
+ *      409:
+ *        description: Conflict
+ *      400:
+ *        description: Bad request
+ *    security:
+ *     - bearerAuth: []
+ */
+
+
+/**
+ * @swagger
+ * /api/v1/orders/{id}:
+ *  delete:
+ *    summary: order cancelled
+ *    tags: [orders]
+ *    parameters:
+ *        - in: path
+ *          name: order Id
+ *          required: true
+ *          schema:
+ *            type: integer 
+ *    responses:
+ *      204:
+ *        description: Success
+ *      409:
+ *        description: Conflict
+ *      400:
+ *        description: Bad request
+ *    security:
+ *     - bearerAuth: []
+ */
+
 
 
 
