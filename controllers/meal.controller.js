@@ -49,16 +49,25 @@ const getMealById = catchAsync(
 
         const { id } = req.params;
 
-       const meal = await Meal.findOne(
-        {
-            where:{id}, where:{status:"avalaible"},
+        const meal = await Meal.findOne({
+            where:{
+                id: id,
+                status:"avalaible"
+            },
+
             include:[
                 {
                     model:Restaurant,
                     attributes:["name","address","rating","status"]
                 }
             ]
+                
+            
         })
+
+        console.log(meal)
+
+      
 
        res.status(200).json({
             status:"succes",
