@@ -131,7 +131,7 @@ module.exports = { restaurantsRouter }
  *          schema:
  *            type: integer
  *    responses:
- *      204:
+ *      200:
  *        description: Success
  *      409:
  *        description: Conflict
@@ -146,6 +146,28 @@ module.exports = { restaurantsRouter }
  *  patch:
  *    summary: update restaurant
  *    tags: [restaurants]
+ *    security:
+ *     - bearerAuth: []
+ *    parameters:
+ *        - in: path
+ *          name: id
+ *          required: true
+ *          schema:
+ *            type: integer
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            $ref: "#/components/schemas/updateRestaurant"
+ *    responses:
+ *      204:
+ *        description: Success
+ *      409:
+ *        description: Conflict
+ *      400:
+ *        description: Bad request
  */
 
 
@@ -155,15 +177,52 @@ module.exports = { restaurantsRouter }
  *  delete:
  *    summary: delete restaurant
  *    tags: [restaurants]
+ *    parameters:
+ *        - in: path
+ *          name: id
+ *          required: true
+ *          schema:
+ *            type: integer 
+ *    responses:
+ *      204:
+ *        description: Success
+ *      409:
+ *        description: Conflict
+ *      400:
+ *        description: Bad request
+ *    security:
+ *     - bearerAuth: []
  */
 
 
 /**
  * @swagger
- * /api/v1/restaurants/reviews/{id}:
+ * /api/v1/restaurants/reviews/{restaurantId}:
  *  post:
  *    summary: add reviews to a restaurant
  *    tags: [restaurants]
+ *    parameters:
+ *        - in: path
+ *          name: restaurantId
+ *          required: true
+ *          schema:
+ *            type: integer
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            $ref: "#/components/schemas/review"
+ *    security:
+ *     - bearerAuth: [] 
+ *    responses:
+ *      201:
+ *        description: Success
+ *      409:
+ *        description: Conflict
+ *      400:
+ *        description: Bad request
  */
 
 
@@ -173,6 +232,28 @@ module.exports = { restaurantsRouter }
  *  patch:
  *    summary: update restaurant review
  *    tags: [restaurants]
+ *    parameters:
+ *        - in: path
+ *          name: id
+ *          required: true
+ *          schema:
+ *            type: integer
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            $ref: "#/components/schemas/review"
+ *    security:
+ *     - bearerAuth: [] 
+ *    responses:
+ *      204:
+ *        description: Success
+ *      409:
+ *        description: Conflict
+ *      400:
+ *        description: Bad request
  */
 
 
@@ -181,8 +262,23 @@ module.exports = { restaurantsRouter }
  * @swagger
  * /api/v1/restaurants/reviews/{id}:
  *  delete:
- *    summary: delete review  
+ *    summary: delete review
  *    tags: [restaurants]
+ *    parameters:
+ *        - in: path
+ *          name: id
+ *          required: true
+ *          schema:
+ *            type: integer
+ *    security:
+ *     - bearerAuth: [] 
+ *    responses:
+ *      204:
+ *        description: Success
+ *      409:
+ *        description: Conflict
+ *      400:
+ *        description: Bad request
  */
 
 
@@ -213,6 +309,32 @@ module.exports = { restaurantsRouter }
  *      example:
  *        name: Frisby
  *        address: calle 48c
+ *        rating: 5
+ *    updateRestaurant:
+ *      type: object
+ *      properties:
+ *        name:
+ *          type: string
+ *        address:
+ *          type: string
+ *          required:
+ *            name
+ *            address
+ *      example:
+ *        name: Quesudos
+ *        address: calle 50
+ *    review:
+ *      type: object
+ *      properties:
+ *        comment:
+ *          type: string
+ *        rating:
+ *          type: integer
+ *          required:
+ *            name
+ *            address
+ *      example:
+ *        comment: Muy rica la comida
  *        rating: 5
  */
 

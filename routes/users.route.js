@@ -48,7 +48,7 @@ usersRouter.post('/signup',
  *              example:
  *                  status: "active"
  *                  id: 1
- *                  name: juan elias 
+ *                  name: juan elias
  *                  email: juaneliasjabib02@gmail.com
  *                  role: client
  *                  updatedAt: 2022-08-29T19:20:58.949Z
