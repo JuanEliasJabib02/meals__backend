@@ -54,28 +54,19 @@ const getMealById = catchAsync(
                 id: id,
                 status:"avalaible"
             },
-
             include:[
                 {
                     model:Restaurant,
                     attributes:["name","address","rating","status"]
                 }
-            ]
-                
-            
+            ]  
         })
-
-        console.log(meal)
-
-      
-
+        
        res.status(200).json({
             status:"succes",
             meal
        })
 
-
-        
     }
 ) 
 

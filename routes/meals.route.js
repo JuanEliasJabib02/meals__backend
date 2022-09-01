@@ -82,6 +82,7 @@ module.exports = {mealsRouter}
  *     - bearerAuth: []
  */
 
+
 /**
  * @swagger
  * /api/v1/meals:
@@ -120,8 +121,58 @@ module.exports = {mealsRouter}
  */
 
 
+/**
+ * @swagger
+ * /api/v1/meals/{id}:
+ *  patch:
+ *    summary: update meal
+ *    tags: [meals]
+ *    parameters:
+ *        - in: path
+ *          name: id
+ *          required: true
+ *          schema:
+ *            type: integer
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            $ref: "#/components/schemas/meal"
+ *    responses:
+ *      200:
+ *        description: Success
+ *      409:
+ *        description: Conflict
+ *      400:
+ *        description: Bad request
+ *    security:
+ *     - bearerAuth: []
+ */
 
-
+/**
+ * @swagger
+ * /api/v1/meals/{id}:
+ *  delete:
+ *    summary: delete restaurant
+ *    tags: [meals]
+ *    parameters:
+ *        - in: path
+ *          name: id
+ *          required: true
+ *          schema:
+ *            type: integer 
+ *    responses:
+ *      204:
+ *        description: Success
+ *      409:
+ *        description: Conflict
+ *      400:
+ *        description: Bad request
+ *    security:
+ *     - bearerAuth: []
+ */
 
 
 
