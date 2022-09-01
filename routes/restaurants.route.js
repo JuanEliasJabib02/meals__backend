@@ -66,3 +66,136 @@ restaurantsRouter.delete('/reviews/:id',
   deleteReview
 )
 module.exports = { restaurantsRouter }
+
+
+
+
+// Documentation
+
+/**
+ * @swagger
+ * /api/v1/restaurants:
+ *  post:
+ *    summary: new restaurant
+ *    tags: [restaurants]
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            $ref: "#/components/schemas/restaurants"
+ *    responses:
+ *      200:
+ *        description: Success
+ *        content:
+ *          application/json:
+ *            schema:
+ *              example:
+ *                  status: "succes"
+ *                  id: 1
+ *                  name: Frisby 
+ *                  address: calle 48c
+ *                  rating: 5
+ *                  updatedAt: 2022-08-29T19:20:58.949Z
+ *                  createdAt: 2022-08-29T19:20:58.949Z
+ *    security:
+ *     - bearerAuth: []
+ */
+
+/**
+ * @swagger
+ * /api/v1/restaurants/:
+ *  get:
+ *    summary: get restaurants
+ *    tags: [restaurants]
+ */
+
+/**
+ * @swagger
+ * /api/v1/restaurants/{id}:
+ *  get:
+ *    summary: get restaurant by id
+ *    tags: [restaurants]
+ */
+
+
+/**
+ * @swagger
+ * /api/v1/restaurants/{id}:
+ *  patch:
+ *    summary: update restaurant
+ *    tags: [restaurants]
+ */
+
+
+/**
+ * @swagger
+ * /api/v1/restaurants/{id}:
+ *  delete:
+ *    summary: delete restaurant
+ *    tags: [restaurants]
+ */
+
+
+/**
+ * @swagger
+ * /api/v1/restaurants/reviews/{id}:
+ *  post:
+ *    summary: add reviews to a restaurant
+ *    tags: [restaurants]
+ */
+
+
+/**
+ * @swagger
+ * /api/v1/restaurants/reviews/{id}:
+ *  patch:
+ *    summary: update restaurant review
+ *    tags: [restaurants]
+ */
+
+
+
+/**
+ * @swagger
+ * /api/v1/restaurants/reviews/{id}:
+ *  delete:
+ *    summary: delete review  
+ *    tags: [restaurants]
+ */
+
+
+
+
+
+
+
+
+// Schemas
+/**
+ * @swagger
+ * components:
+ *  schemas:
+ *    restaurants:
+ *      type: object
+ *      properties:
+ *        name:
+ *          type: string
+ *        address:
+ *          type: string
+ *        rating:
+ *          type: integer
+ *          required:
+ *            name
+ *            address
+ *            rating
+ *      example:
+ *        name: Frisby
+ *        address: calle 48c
+ *        rating: 5
+ */
+
+
+
+

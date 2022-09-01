@@ -54,9 +54,9 @@ usersRouter.post('/signup',
  *                  updatedAt: 2022-08-29T19:20:58.949Z
  *                  createdAt: 2022-08-29T19:20:58.949Z
  *                       
- *      409:
- *        description: Conflict
  *      400:
+ *        description: Conflict
+ *      500:
  *        description: Bad request
  */
 
@@ -145,6 +145,35 @@ usersRouter.delete('/:id',
     deleteUser
 )
 
+/**
+ * @swagger
+ * /api/v1/users/{id}:
+ *  delete:
+ *    summary: delete user
+ *    tags: [users]
+ *    parameters:
+ *        - in: path
+ *          name: id
+ *          required: true
+ *          schema:
+ *            type: integer
+ *    responses:
+ *      204:
+ *        description: Success
+ *      409:
+ *        description: Conflict
+ *      400:
+ *        description: Bad request
+ *    security:
+ *     - bearerAuth: []
+ */
+
+
+
+
+
+
+
 usersRouter.get('/orders',
     authentication,
     getOrdersByUser
@@ -156,6 +185,7 @@ usersRouter.get('/orders/:id',
     authentication,
     getOrderById
 )
+
 
 
 /**
