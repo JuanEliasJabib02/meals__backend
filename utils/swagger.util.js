@@ -8,25 +8,20 @@ const swaggerSpec = {
             title:"Rest API meals Doc",
             version:"1.0.0"
         },
-        components:{
-          securitySchemas:{
-            bearerAuth:{
-              type:"http",
-              scheme:"bearer",
-              bearerFormat:"JWT"
-            }
-          }
-        },
-        security: [
-          {
-            bearerAuth: [],
-          }
-        ],
         servers:[
           {
             url:"http://localhost:4000"
           }
-        ]
+        ],
+        components: {
+          securitySchemes:{
+            bearerAuth:{
+              type: "http",
+              scheme: "bearer",
+            }
+          }
+        }
+
     },
     apis:[
         `${path.join(__dirname, "../routes/*.js")}`,

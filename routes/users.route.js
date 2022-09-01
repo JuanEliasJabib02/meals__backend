@@ -104,7 +104,35 @@ usersRouter.patch('/:id',
     updateUser
 )
 
-
+/**
+ * @swagger
+ * /api/v1/users/{id}:
+ *  patch:
+ *    summary: update user
+ *    tags: [users]
+ *    parameters:
+ *        - in: path
+ *          name: id
+ *          required: true
+ *          schema:
+ *            type: integer
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            $ref: "#/components/schemas/updateUser"
+ *    responses:
+ *      204:
+ *        description: Success
+ *      409:
+ *        description: Conflict
+ *      400:
+ *        description: Bad request
+ *    security:
+ *     - bearerAuth: []
+ */
 
 
 
@@ -169,6 +197,17 @@ usersRouter.get('/orders/:id',
  *      example:
  *        email: juaneliasjabib02@gmail.com
  *        password: easypass1234
+ * 
+ *    updateUser:
+ *      type: object
+ *      properties:
+ *          name:
+ *            type: string
+ *          email:
+ *            type: string
+ *      example:
+ *        name: nameedited
+ *        email: emailnew@gmail.com
  */
 
 
