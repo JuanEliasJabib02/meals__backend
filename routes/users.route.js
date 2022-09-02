@@ -24,7 +24,40 @@ usersRouter.post('/signup',
     signUp
 )
 
+usersRouter.post('/login',
+    login
+)
 
+usersRouter.patch('/:id',
+    authentication,
+    userExist,
+    protectUserAccount,
+    updateUser
+)
+
+
+usersRouter.delete('/:id',
+    authentication,
+    userExist,
+    protectUserAccount,
+    deleteUser
+)
+
+
+usersRouter.get('/orders',
+    authentication,
+    getOrdersByUser
+    
+)
+
+usersRouter.get('/orders/:id',
+    authentication,
+    getOrderById
+)
+
+
+
+// Documentation
 
 /**
  * @swagger
@@ -60,11 +93,6 @@ usersRouter.post('/signup',
  *        description: Bad request
  */
 
-
-usersRouter.post('/login',
-    login
-)
-
 /**
  * @swagger
  * /api/v1/users/login:
@@ -93,16 +121,6 @@ usersRouter.post('/login',
  *      400:
  *        description: Bad request
  */
-
-
-
-
-usersRouter.patch('/:id',
-    authentication,
-    userExist,
-    protectUserAccount,
-    updateUser
-)
 
 /**
  * @swagger
@@ -134,22 +152,51 @@ usersRouter.patch('/:id',
  *     - bearerAuth: []
  */
 
-
-
-
-
-usersRouter.delete('/:id',
-    authentication,
-    userExist,
-    protectUserAccount,
-    deleteUser
-)
-
 /**
  * @swagger
  * /api/v1/users/{id}:
  *  delete:
  *    summary: delete user
+ *    tags: [users]
+ *    parameters:
+ *        - in: path
+ *          name: id
+ *          required: true
+ *          schema:
+ *            type: integer
+ *    responses:
+ *      204:
+ *        description: Success
+ *      409:
+ *        description: Conflict
+ *      400:
+ *        description: Bad request
+ *    security:
+ *     - bearerAuth: []
+ */
+
+/**
+ * @swagger
+ * /api/v1/users/orders:
+ *  get:
+ *    summary: get orders by users
+ *    tags: [users]
+ *    responses:
+ *      204:
+ *        description: Success
+ *      409:
+ *        description: Conflict
+ *      400:
+ *        description: Bad request
+ *    security:
+ *     - bearerAuth: []
+ */
+
+/**
+ * @swagger
+ * /api/v1/users/orders/{id}:
+ *  get:
+ *    summary: get orders by id
  *    tags: [users]
  *    parameters:
  *        - in: path
@@ -174,20 +221,15 @@ usersRouter.delete('/:id',
 
 
 
-usersRouter.get('/orders',
-    authentication,
-    getOrdersByUser
-    
-)
-
-
-usersRouter.get('/orders/:id',
-    authentication,
-    getOrderById
-)
 
 
 
+
+
+
+
+
+//Schemas
 /**
  * @swagger
  * components:
@@ -239,6 +281,8 @@ usersRouter.get('/orders/:id',
  *        name: nameedited
  *        email: emailnew@gmail.com
  */
+
+
 
 
 

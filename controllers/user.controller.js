@@ -126,8 +126,6 @@ const getOrdersByUser = catchAsync(
         
         const { tokenId } = req;
 
-      
-
         const userOrders = await User.findOne({
              where: { id : tokenId},
              where: { status:"active"},
