@@ -15,8 +15,16 @@ const db = new Sequelize({
     password:process.env.DB_PASS, // Aqui ponemos la contraseña cuando instalamos postgres
     port:process.env.DB_PORT,
     database:process.env.DB, // Aqui le decimos a sequelize a que base de datos conectarse
-    logging: false  /* Activar si necesito ver la consulta y debuggear */
-
+    logging: false,  /* Activar si necesito ver la consulta y debuggear */
+    dialectOptions:
+        process.env.NODE_ENV ==='production'
+        ? {
+            ssl: {
+                required:true,
+                rejectUnauthorized:false,
+            }
+           }
+        : {},
 })
 
 module.exports = { db, DataTypes}
